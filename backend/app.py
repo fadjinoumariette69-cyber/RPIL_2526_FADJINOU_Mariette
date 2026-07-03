@@ -2,21 +2,26 @@ import os
 import re
 from datetime import time
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__)
-CORS(app)  # autorise les appels fetch() depuis ton frontend s'il est servi séparément
+# 1. Calcul des chemins absolus vers vos dossiers frontend standard
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend'))
 
-# Connexion à la base de données MySQL.
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
-    "DATABASE_URL",
-    "mysql+pymysql://root:root@localhost:3306/mentorlink"
-)
+# 2. Initialisation UNIQUE de Flask avec la bonne configuration de dossiers
+app = Flask(__name__, 
+            template_folder=os.path.join(FRONTEND_DIR, 'templates'), 
+            static_folder=os.path.join(FRONTEND_DIR, 'static'))
+
+CORS(app)  # Autorise les appels fetch() depuis le frontend
+
+# 3. Connexion à la base de données MySQL (Configuration XAMPP)
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:@localhost:3306/mentorlink"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -79,9 +84,6 @@ def matcher_mentors(matiere_texte, horaire_texte, filiere_texte):
     Règles imposées par le sujet :
     - au moins une matière en commun
     - tolérance horaire de ± 1 heure
-    La filière (optionnelle côté formulaire) sert de bonus de score, pas de filtre
-    strict, pour ne pas exclure des mentors valables si l'utilisateur la laisse vide
-    ou si aucun mentor exact n'existe pour cette filière.
     """
     matieres_demandees = [m.strip().lower() for m in matiere_texte.split(",") if m.strip()]
     heure_demandee = parser_heure(horaire_texte)
@@ -104,7 +106,7 @@ def matcher_mentors(matiere_texte, horaire_texte, filiere_texte):
 
         meilleur_ecart = min(difference_minutes(heure_demandee, h) for h in horaires_mentor)
 
-        if meilleur_ecart > 60:  # tolérance ± 1 heure
+        if meilleur_ecart > 60:  # tolérance ± 1 heure stricte
             continue
 
         filiere_ok = bool(
@@ -135,6 +137,12 @@ def matcher_mentors(matiere_texte, horaire_texte, filiere_texte):
 # Routes
 # ------------------------------------------------------------------
 
+# AJOUT DE LA ROUTE PRINCIPALE : Permet d'ouvrir le fichier index.html
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
 @app.route("/api/match", methods=["POST"])
 def api_match():
     donnees = request.get_json(silent=True) or {}
@@ -156,7 +164,6 @@ def api_match():
 
 # ------------------------------------------------------------------
 # Commande CLI pour initialiser et peupler la base
-# Usage : flask --app app init-db
 # ------------------------------------------------------------------
 
 @app.cli.command("init-db")
