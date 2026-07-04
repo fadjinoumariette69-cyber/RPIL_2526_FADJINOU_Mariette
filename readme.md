@@ -1,8 +1,6 @@
 # IFRI MentorLink — Plateforme de Mentorat
 
-**IFRI MentorLink** est une application web dynamique développée dans le cadre du projet intégrateur de l'année universitaire 2025-2026 (IFRI / UAC). La plateforme permet de connecter instantanément les étudiants (mentorés) avec les mentors les plus compatibles en fonction de leurs besoins pédagogiques et de leurs disponibilités.
-
----
+**IFRI MentorLink** est une plateforme permet de connecter instantanément les étudiants (mentorés) avec les mentors les plus compatibles en fonction de leurs besoins pédagogiques et de leurs disponibilités.
 
 ## Fonctionnalités Clés (Contraintes du Sujet)
 
@@ -15,22 +13,18 @@ L'application repose sur un algorithme intelligent exécuté côté serveur (Bac
    * **10 points** de bonus si la filière du mentor correspond à celle demandée.
 4. **Tri Dynamique** : Les profils correspondants sont affichés en temps réel sous forme de cartes, classés du plus compatible au moins compatible.
 
----
-
 ## Technologies Utilisées
 
-* **Front-end** : HTML5, CSS3 personnalisé, JavaScript (Fetch API pour les requêtes asynchrones), Bootstrap 5 pour le design adaptatif.
-* **Back-end** : Python 3, Framework Flask (Architecture MVC légère).
+* **Front-end** : HTML, CSS personnalisé, JavaScript (Fetch API pour les requêtes asynchrones), Bootstrap  pour le design adaptatif.
+* **Back-end** : Python , Framework Flask (Architecture MVC légère).
 * **Base de Données** : MySQL (géré localement via **XAMPP**), interfacé avec Flask-SQLAlchemy et PyMySQL.
-
----
 
 ## Structure du Projet
 
 Conformément aux normes exigées pour le dépôt, le projet est structuré comme suit :
 
 ```text
-RPIL_2526_nom_prenom/
+RPIL_2526_FADJINOU_Mariette/
 ├── backend/
 │   ├── app.py                      # Serveur Flask & Algorithme de matching
 │   └── requirements.txt            # Dépendances Python du projet
@@ -52,8 +46,6 @@ RPIL_2526_nom_prenom/
 ├── .gitignore                      # Exclusion du dossier venv/ et des caches
 └── README.md                       # Guide d'utilisation du projet
 ```
-
----
 
 ## Installation et Lancement Local
 
@@ -92,8 +84,6 @@ Suivez ces étapes pour exécuter le projet sur votre machine de test.
    ```
 2. Ouvrez votre navigateur internet et accédez à l'adresse suivante : **`http://127.0.0.1:5000`**
 
----
-
 ## Jeu de Test Recommandé
 
 Pour valider le fonctionnement de la tolérance horaire et du bonus de filière :
@@ -102,5 +92,3 @@ Pour valider le fonctionnement de la tolérance horaire et du bonus de filière 
 * **Saisie** : Matières = `Python` | Horaire = `16:30`
 * **Résultat** : Les mentors **Awa Chabi** (dispo 16h) et **Marc Agbodjan** (dispo 17h) s'afficheront simultanément à l'écran, triés selon leur score de proximité horaire.
 
----
-Projet de rattrapage présenté par l'étudiant dans le cadre des Unités d'Enseignement Pratiques de l'IFRI.
