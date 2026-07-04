@@ -2,7 +2,7 @@
 
 **IFRI MentorLink** est une plateforme permet de connecter instantanément les mentorés avec les mentors les plus compatibles en fonction de leurs besoins pédagogiques et de leurs disponibilités.
 
-## Fonctionnalités Clés (Contraintes du Sujet)
+## Fonctionnalités Clés
 
 L'application repose sur un algorithme intelligent exécuté côté serveur (Back-end) qui respecte strictement les exigences du cahier des charges :
 1. **Filtre de compétences** : Exclusion automatique des mentors n'ayant aucune matière demandée en commun avec l'étudiant.
@@ -84,7 +84,7 @@ Suivez ces étapes pour exécuter le projet sur votre machine de test.
    ```
 2. Ouvrez votre navigateur internet et accédez à l'adresse suivante : **`http://127.0.0.1:5000`**
 
-## Jeu de Test Recommandé
+## Jeu de Test
 
 Pour valider le fonctionnement de la tolérance horaire et du bonus de filière :
 * **Saisie** : Matières = `Python` | Horaire = `15:00` | Filière = `Licence IA`
