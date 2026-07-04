@@ -4,17 +4,13 @@
 }
 header{
     background-color:#1B0F8C;
-    display: flex;
-    align-items: center;   
-    padding: 2px 20px;
-    justify-content: space-between;
+    display: flex;   
+    padding: 3px 8px;
     border-radius: 5px;    
 }
-nav a{
-    text-decoration: none;
-}
-nav ul {
-    list-style-type: none; 
+h3{
+  text-align: center;
+  padding-left: 30%;
 }
 .footer {
   background-color: #1B0F8C;
@@ -117,3 +113,4 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #120A60;
 }
+
