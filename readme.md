@@ -1,6 +1,6 @@
 # IFRI MentorLink — Plateforme de Mentorat
 
-**IFRI MentorLink** est une plateforme permet de connecter instantanément les étudiants (mentorés) avec les mentors les plus compatibles en fonction de leurs besoins pédagogiques et de leurs disponibilités.
+**IFRI MentorLink** est une plateforme permet de connecter instantanément les mentorés avec les mentors les plus compatibles en fonction de leurs besoins pédagogiques et de leurs disponibilités.
 
 ## Fonctionnalités Clés (Contraintes du Sujet)
 
